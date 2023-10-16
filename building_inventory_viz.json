@@ -1,0 +1,33 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/tfals/tfals.github.io/main/building_inventory.csv"
+    },
+    "transform": [
+      {
+        "calculate": "year(datum['Year Acquired'])",
+        "as": "Acquisition Year"
+      },
+      {
+        "calculate": "floor(datum['Acquisition Year'] / 10) * 10",
+        "as": "Decade"
+      }
+    ],
+    "mark": "bar",
+    "encoding": {
+      "x": {
+        "field": "Decade",
+        "type": "ordinal"
+      },
+      "y": {
+        "aggregate": "sum",
+        "field": "Square Footage",
+        "type": "quantitative"
+      },
+      "color": {
+        "field": "Decade",
+        "type": "ordinal",
+        "scale": {"scheme": "category20"}
+      }
+    }
+  }
