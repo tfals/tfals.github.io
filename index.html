@@ -1,24 +1,20 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Building Inventory Visualization</title>
-    <script src="https://cdn.jsdelivr.net/npm/vega@5.25.0/build/vega.min.js"
-        integrity="sha256-na2uPt+tUPV7GRVpc+/ezQj+lGwljIvOJifkmg8f3as=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.15.0/build/vega-lite.min.js"
-        integrity="sha256-WLAn82Ut4GptY/IJf4K/1i+R8ibAkVLFhBVkOovqCK8=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.22.2/build/vega-embed.min.js"
-        integrity="sha256-GfFZ6w7V/y3Ws9eHVsOXZ/F1ZFroThVZraOAx3HAt6s=" crossorigin="anonymous"></script>
-  </head>
-  <body>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.25.0/build/vega.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.15.0/build/vega-lite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.22.2/build/vega-embed.min.js"></script>
+</head>
+<body>
     <div id="viz"></div>
 
     <script>
-      // Load your vega-lite specification from the JSON file
-      fetch('building_inventory_viz.json')
-        .then(response => response.json())
-        .then(vlSpec => {
-          vegaEmbed('#viz', vlSpec); // Embed the visualization in the div with id "viz"
-        });
+        fetch('building_inventory_viz.json')
+            .then(response => response.json())
+            .then(vlSpec => {
+                vegaEmbed('#viz', vlSpec);
+            });
     </script>
-  </body>
+</body>
 </html>
