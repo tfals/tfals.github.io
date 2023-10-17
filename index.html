@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-  <meta charset="UTF-8">
   <title>Building Inventory Visualization</title>
   <script src="https://cdn.jsdelivr.net/npm/vega@5.25.0/build/vega.min.js"
           integrity="sha256-na2uPt+tUPV7GRVpc+/ezQj+lGwljIvOJifkmg8f3as=" crossorigin="anonymous"></script>
@@ -13,6 +11,7 @@
 <body>
   <div id="vis">
   </div>
+
   <script>
     const vlSpec = {
       "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -38,7 +37,6 @@
         }
       }
     };
-
     vegaEmbed('#vis', vlSpec);
   </script>
 </body>
