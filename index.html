@@ -1,35 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Building Inventory Visualization</title>
-    <!-- Include Vega and Vega-Lite libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/vega@5.25.0/build/vega.min.js"
-        integrity="sha256-na2uPt+tUPV7GRVpc+/ezQj+lGwljIvOJifkmg8f3as=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.15.0/build/vega-lite.min.js"
-        integrity="sha256-WLAn82Ut4GptY/IJf4K/1i+R8ibAkVLFhBVkOovqCK8=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.22.2/build/vega-embed.min.js"
-        integrity="sha256-GfFZ6w7V/y3Ws9eHVsOXZ/F1ZFroThVZraOAx3HAt6s=" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <title>Building Inventory Visualization</title>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 </head>
-
 <body>
-    <!-- Your visualization will be embedded here -->
-    <div id="viz"></div>
+  <div id="vis"></div>
+  <script>
+    const spec = {
+      "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+      "data": {
+        "url": "https://raw.githubusercontent.com/tfals/tfals.github.io/main/building_inventory.csv"
+      },
+      "transform": [
+        {"calculate": "year(datum['Year Acquired'])", "as": "Acquisition Year"},
+        {"calculate": "floor(datum['Acquisition Year'] / 10) * 10", "as": "Decade"}
+      ],
+      "mark": "bar",
+      "encoding": {
+        "x": {"field": "Decade", "type": "ordinal"},
+        "y": {
+          "aggregate": "sum",
+          "field": "Square Footage",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "Decade",
+          "type": "ordinal",
+          "scale": {"scheme": "category20"}
+        }
+      }
+    };
 
-    <script>
-        // Load your Vega-Lite specification file
-        fetch('visualization.vl.json')
-            .then(response => response.json())
-            .then(spec => {
-                // Specify the div id where the visualization will be embedded
-                const element = document.getElementById('viz');
-
-                // Embed the visualization using vegaEmbed
-                vegaEmbed(element, spec);
-            });
-    </script>
+    vegaEmbed('#vis', spec);
+  </script>
 </body>
-
 </html>
