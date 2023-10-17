@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Building Inventory Visualization</title>
-  <!-- Include specific versions of Vega libraries -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5.25.0/build/vega.min.js"
           integrity="sha256-na2uPt+tUPV7GRVpc+/ezQj+lGwljIvOJifkmg8f3as=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.15.0/build/vega-lite.min.js"
@@ -12,10 +11,10 @@
           integrity="sha256-GfFZ6w7V/y3Ws9eHVsOXZ/F1ZFroThVZraOAx3HAt6s=" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div id="vis"></div>
+  <div id="vis">
+  </div>
   <script>
-    // Your Vega-Lite specification here
-    const spec = {
+    const vlSpec = {
       "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
       "data": {
         "url": "https://raw.githubusercontent.com/tfals/tfals.github.io/main/building_inventory.csv"
@@ -40,7 +39,7 @@
       }
     };
 
-    vegaEmbed('#vis', spec);
+    vegaEmbed('#vis', vlSpec);
   </script>
 </body>
 </html>
